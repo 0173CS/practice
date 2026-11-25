@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag to ensure proper display on mobile and all screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indori Aroma Coffee | Artisanal Roasters & Cafe</title>
+    
+    <!-- Google Fonts: For headings 'Playfair Display' for body and text 'Plus Jakarta Sans' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & RESET (colour plats or basis setings)
+           ============================================= */
+        :root {
+            /* Warm Coffee-House Colour Palette */
+            --espresso-dark: #23150F;      /* dark cofee brown (main text and futtor) */
+            --roast-brown: #4A2C2A;        /* medium rosted brown  (for cords or sub-heading) */
+            --terracotta-gold: #C87D4B;    /* rosted gold or terracotta-gold 
+            --terracotta-hover: #A86234;   /* Darker shade for button hover state */
+            --warm-cream: #FAF6F0;         /* Warm cream color for the main background */
+            --soft-latte: #F0E6D8;         /* Alternate Section Background */
+            --pure-white: #FFFFFF;
+            --text-muted: #6B5B53;
+            
+            /* Typography */
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Spacing & Borders */
+            --border-radius-md: 12px;
+            --border-radius-lg: 20px;
+            --shadow-soft: 0 10px 30px rgba(35, 21, 15, 0.08);
+        }
+
+        /* `box-sizing: border-box` for all elements, so that padding does not break the layout */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Smooth scrolling when a navigation link is clicked */
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--warm-cream);
+            color: var(--espresso-dark);
+            line-height: 1.6;
+            overflow-x: hidden; /* To prevent horizontal scrolling*/
+        }
+
+        /* The main container that keeps the content in the center of the screen */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           2. STICKY NAVIGATION BAR (check-list 1)
+           ========================================================================== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(250, 246, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(74, 44, 42, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand-logo {
+            font-family: var(--font-heading);
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--espresso-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-logo span {
+            color: var(--terracotta-gold);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--espresso-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--terracotta-gold);
+        }
+
+        .nav-cta {
+            background-color: var(--espresso-dark);
+            color: var(--pure-white) !important;
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease !important;
+        }
+
+        .nav-cta:hover {
+            background-color: var(--terracotta-gold) !important;
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           3. HERO SECTION (chack list- 2)
+           ========================================================================== */
+        .hero {
+            /* Attractive rich coffee gradient and background layer */
+            background: linear-gradient(135deg, rgba(35, 21, 15, 0.92) 0%, rgba(74, 44, 42, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: var(--warm-cream);
+            padding: 7rem 0;
+            text-align: center;
+            min-height: 82vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(200, 125, 75, 0.2);
+            border: 1px solid var(--terracotta-gold);
+            color: #F3C6A5;
+            padding: 0.4rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4.2rem); /* स्क्रीन के हिसाब से रिस्पॉन्सिव फॉन्ट साइज़ */
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: var(--pure-white);
+        }
+
+        .hero h1 em {
+            color: var(--terracotta-gold);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            color: #E5D9CE;
+            margin-bottom: 2.5rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--terracotta-gold);
+            color: var(--pure-white);
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 8px 20px rgba(200, 125, 75, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--terracotta-hover);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--warm-cream);
+            border: 2px solid var(--warm-cream);
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--warm-cream);
+            color: var(--espresso-dark);
+        }
+
+        /* ==========================================================================
+           COMMON SECTION HEADINGS
+           ========================================================================== */
+        .section-padding {
+            padding: 5.5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .section-tag {
+            color: var(--terracotta-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            color: var(--espresso-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* ==========================================================================
+           4. FEATURES SECTION - CSS GRID (check list- 3A)
+           ========================================================================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--pure-white);
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(74, 44, 42, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(35, 21, 15, 0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--soft-latte);
+            color: var(--terracotta-gold);
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+            margin-bottom: 0.8rem;
+            color: var(--espresso-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* ==========================================================================
+           5. ABOUT US SECTION - CSS FLEXBOX/GRID (check list 3B)
+           ========================================================================== */
+        .about-section {
+            background-color: var(--soft-latte);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .about-image-wrapper img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 3.5vw, 2.7rem);
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(74, 44, 42, 0.15);
+            flex-wrap: wrap;
+        }
+
+        .stat-item h4 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--terracotta-gold);
+        }
+
+        .stat-item span {
+            font-size: 0.9rem;
+            color: var(--roast-brown);
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           6. TESTIMONIALS SECTION (check list-3C)
+           ========================================================================== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background-color: var(--pure-white);
+            padding: 2.2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-soft);
+            border-left: 5px solid var(--terracotta-gold);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stars {
+            color: #E09F3E;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--espresso-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background-color: var(--roast-brown);
+            color: var(--warm-cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .reviewer-info h5 {
+            font-size: 1rem;
+            color: var(--espresso-dark);
+        }
+
+        .reviewer-info span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           7. ORDER / CTA BANNER SECTION
+           ========================================================================== */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--roast-brown), var(--espresso-dark));
+            color: var(--warm-cream);
+            border-radius: var(--border-radius-lg);
+            padding: 4rem 2.5rem;
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .cta-banner h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: #DFD3C8;
+        }
+
+        /* ==========================================================================
+           8. FOOTER SECTION (check list 4)
+           ========================================================================== */
+        .footer {
+            background-color: var(--espresso-dark);
+            color: #D7C9BE;
+            padding: 4.5rem 0 2rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-family: var(--font-heading);
+            color: var(--pure-white);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col h4 {
+            color: var(--terracotta-gold);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col p, .footer-col li {
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+            list-style: none;
+        }
+
+        .footer-col a {
+            color: #D7C9BE;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--terracotta-gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0.9rem;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            background-color: var(--terracotta-gold);
+            color: var(--pure-white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #A69589;
+        }
+
+        /* ==========================================================================
+           9. RESPONSIVE MEDIA QUERIES (check list 6 - for mobile)
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr; /* images up-down for mobiile or teblets */
+                gap: 2.5rem;
+            }
+
+            .about-image-wrapper img {
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 5rem 0;
+            }
+
+            .section-padding {
+                padding: 3.8rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. STICKY NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="brand-logo">☕ Indori <span>Aroma</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#order" class="nav-cta">Order Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <span class="hero-badge">Small-Batch Artisanal Roastery • Indore</span>
+            <h1>Wake Up to the Rich Soul of <em>Handcrafted</em> Coffee</h1>
+            <p>Ethically sourced single-origin Arabica beans from Chikmagalur, slow-roasted fresh every morning in the heart of Indore for an unforgettable cup.</p>
+            <div class="hero-buttons">
+                <a href="#order" class="btn-primary">Order Fresh Beans</a>
+                <a href="#features" class="btn-secondary">Explore Our Craft</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3A. FEATURES SECTION -->
+    <section id="features" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Why Choose Us</span>
+                <h2>Crafted for True Coffee Lovers</h2>
+                <p>Every bag of Indori Aroma Coffee goes through a meticulous journey from high-altitude estates to your morning mug.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature Card 1 -->
+                <article class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>100% Fresh Estate Beans</h3>
+                    <p>Direct trade partnerships with organic farms in Coorg and Chikmagalur ensure only top-grade, handpicked Arabica cherries make the cut.</p>
+                </article>
+
+                <!-- Feature Card 2 -->
+                <article class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Artisanal Small-Batch Roasting</h3>
+                    <p>We roast in small batches at our Vijay Nagar roastery to unlock rich notes of dark chocolate, roasted hazelnut, and caramel.</p>
+                </article>
+
+                <!-- Feature Card 3 -->
+                <article class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Same-Day Indore Delivery</h3>
+                    <p>Ordered before 2 PM? Get freshly ground or whole-bean coffee delivered straight to your doorstep across Indore within hours.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3B. ABOUT US SECTION -->
+    <section id="about" class="section-padding about-section">
+        <div class="container about-grid">
+            <div class="about-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=80" alt="Barista pouring fresh espresso latte art">
+            </div>
+            <div class="about-text">
+                <span class="section-tag">Our Story</span>
+                <h2>Born in Indore, Brewed with Passion</h2>
+                <p>Started in 2021 by two coffee-obsessed friends near Chappan Dukan, Indori Aroma Coffee began with a simple mission: to replace stale supermarket instant coffee with vibrant, freshly roasted specialty brews.</p>
+                <p>Whether you love a bold South Indian filter decoction, a creamy espresso, or a smooth cold brew, we customize your grind size to match your exact brewing equipment.</p>
+                
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <h4>15,000+</h4>
+                        <span>Happy Sippers</span>
+                    </div>
+                    <div class="stat-item">
+                        <h4>4.9 ★</h4>
+                        <span>Average Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <h4>24 Hrs</h4>
+                        <span>Roast-to-Door</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3C. TESTIMONIALS SECTION -->
+    <section id="reviews" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Customer Love</span>
+                <h2>What Indore is Sipping</h2>
+                <p>Don't just take our word for it—hear from our daily coffee community across the city.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <article class="review-card">
+                    <div>
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"The Monsoon Malabar medium roast has completely replaced my cafe visits. The aroma fills my entire apartment the moment I open the pouch!"</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">AS</div>
+                        <div class="reviewer-info">
+                            <h5>Aarav Sharma</h5>
+                            <span>Vijay Nagar, Indore</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review 2 -->
+                <article class="review-card">
+                    <div>
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"Super fast delivery and they ground the beans specifically for my French Press. Best specialty coffee brand in Central India hands down."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">PP</div>
+                        <div class="reviewer-info">
+                            <h5>Priya Patidar</h5>
+                            <span>Palasia, Indore</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review 3 -->
+                <article class="review-card">
+                    <div>
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"Their Cold Brew blend is silky smooth with zero bitterness. Even my parents, who only drank chai earlier, are hooked on this coffee."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">RV</div>
+                        <div class="reviewer-info">
+                            <h5>Rohan Verma</h5>
+                            <span>Saket Nagar, Indore</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section id="order" class="container">
+        <div class="cta-banner">
+            <h2>Ready to Upgrade Your Morning Ritual?</h2>
+            <p>Get 20% off your first freshly roasted coffee bag + free doorstep delivery anywhere in Indore. Use code: <strong>INDORE20</strong></p>
+            <a href="mailto:orders@indoriaroma.in?subject=New%20Coffee%20Order" class="btn-primary">Place Your Order Today</a>
+        </div>
+    </section>
+
+    <!-- 4. FOOTER SECTION -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>☕ Indori Aroma</h3>
+                    <p>Crafting small-batch artisanal coffee for everyday moments. Roasted fresh in Indore, Madhya Pradesh.</p>
+                    <div class="social-links">
+                        <a href="#home" aria-label="Instagram">Instagram</a>
+                        <a href="#home" aria-label="Twitter">X / Twitter</a>
+                        <a href="#home" aria-label="Facebook">Facebook</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Our Features</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#reviews">Customer Reviews</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Visit Roastery</h4>
+                    <p>Plot 42, Scheme No. 54,<br>Vijay Nagar, Indore, MP 452010</p>
+                    <p>Mon – Sun: 8:00 AM – 10:00 PM</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p>Email: hello@indoriaroma.in</p>
+                    <p>Phone: +91 731 400 8920</p>
+                    <p>Wholesale: partner@indoriaroma.in</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Indori Aroma Coffee Roasters. All rights reserved. </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
